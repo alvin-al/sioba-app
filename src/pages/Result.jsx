@@ -12,8 +12,7 @@ const Result = () => {
   const location = useLocation();
   const { imgSrc } = location.state || {};
   const [output, setOutput] = useState("Sedang menganalisa...");
-  const API_KEY = import.meta.env.API_KEY; // For Vite projects
-  // const API_KEY = process.env.REACT_APP_API_KEY; // Uncomment this line instead if using Create React App
+  const API_KEY = import.meta.env.VITE_API_KEY;
   const defaultPrompt =
     "Tolong analisa gambar tersebut. Jika bukan obat, maka keluarkan bukan obat. Jika obat, maka sebutkan hal berikut: Nama obat, kegunaan obat (berikan list saja),Kandungan (berikan list saja), Efek samping (berikan list saja), Bentuk Obat ,Rentang Harga (harus diberikan meskipun perkiraan). Berikan warning bahwa perlu pengawasan dokter untuk penggunaan lebih lanjut (1 paragraf saja. jangan terlalu panjang)";
 
