@@ -1,5 +1,5 @@
 import React from "react";
-import image from "./../src/assets/drug.png";
+import image from "./../assets/drug.png";
 import { AiFillCamera } from "react-icons/ai";
 
 const FrontPage = () => {
@@ -19,12 +19,14 @@ const FrontPage = () => {
         </p>
       </div>
       <div>
-        <button className=' flex gap-2 items-center bg-green-600 py-2 px-4 mt-12 rounded-md font-medium'>
-          Ambil Foto Obat
-          <span>
-            <AiFillCamera size='1.4em' />
-          </span>
-        </button>
+        <a href='/camera'>
+          <button className='flex gap-2 items-center bg-green-600 py-2 px-4 mt-12 rounded-md font-medium'>
+            Ambil Foto Obat
+            <span>
+              <AiFillCamera size='1.4em' />
+            </span>
+          </button>
+        </a>
       </div>
     </div>
   );
