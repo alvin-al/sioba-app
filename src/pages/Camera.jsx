@@ -15,7 +15,7 @@ const Camera = () => {
   const videoConstraints = {
     width: 1000,
     height: 4000,
-    facingMode: "user",
+    facingMode: "environment",
   };
 
   const handleAnalyze = () => {
