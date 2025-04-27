@@ -1,6 +1,4 @@
-import FrontPage from "./pages/FrontPage";
 import "./App.css";
-import Camera from "./pages/Camera";
 
 function App({ children }) {
   return (

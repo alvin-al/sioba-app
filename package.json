@@ -12,6 +12,7 @@
   "dependencies": {
     "@google/generative-ai": "^0.24.0",
     "@tailwindcss/vite": "^4.1.4",
+    "@vercel/react-router": "^1.1.0",
     "base64-js": "^1.5.1",
     "markdown-it": "^14.1.0",
     "react": "^19.0.0",
