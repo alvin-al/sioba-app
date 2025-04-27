@@ -14,7 +14,7 @@ const Camera = () => {
 
   const videoConstraints = {
     width: 1000,
-    height: 4000,
+    height: 1000,
     facingMode: "environment",
   };
 
@@ -27,13 +27,13 @@ const Camera = () => {
       {/* Tampilkan webcam jika tidak ada gambar */}
       {!imgSrc ? (
         <>
-          <div>
+          <div className='h-full'>
             <p className='text-xl font-medium text-center text-gray-800 mb-4'>
               Ambil Foto Obat Anda
             </p>
             <Webcam
               audio={false}
-              height='4000'
+              height='1000'
               screenshotFormat='image/jpeg'
               width='100%'
               videoConstraints={videoConstraints}
