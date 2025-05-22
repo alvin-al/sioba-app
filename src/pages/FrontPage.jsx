@@ -20,7 +20,7 @@ const FrontPage = () => {
   };
 
   return (
-    <div className='h-dvh bg-white flex items-center flex-col'>
+    <div className='min-h-screen bg-white flex items-center flex-col'>
       <div className='text-2xl px-8 leading-tight font-medium text-center pt-16 text-gray-800'>
         Selamat Datang di <br />
         SIOBA - Sistem Pengenalan Obat

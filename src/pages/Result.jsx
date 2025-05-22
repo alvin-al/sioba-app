@@ -7,14 +7,18 @@ import {
   HarmBlockThreshold,
 } from "@google/generative-ai";
 import MarkdownIt from "markdown-it";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 const Result = () => {
   const location = useLocation();
   const { imgSrc } = location.state || {};
   const [output, setOutput] = useState("Sedang menganalisa...");
   const API_KEY = import.meta.env.VITE_API_KEY;
+  const navigate = useNavigate();
   const defaultPrompt =
-    "Tolong analisa gambar tersebut. Jika bukan obat, maka keluarkan bukan obat. Jika obat, maka sebutkan hal berikut: Nama obat, kegunaan obat (berikan list saja),Kandungan (berikan list saja), Efek samping (berikan list saja), Bentuk Obat ,Rentang Harga (harus diberikan meskipun perkiraan). Berikan warning bahwa perlu pengawasan dokter untuk penggunaan lebih lanjut (1 paragraf saja. jangan terlalu panjang)";
+    "Tolong analisa gambar tersebut. Jika bukan obat, maka keluarkan bukan obat. Jika obat, maka sebutkan hal berikut tanpa deskripsi: Nama obat, kegunaan obat (berikan list saja), kandungan (berikan list saja), Efek samping (berikan list saja), Bentuk Obat ,Rentang Harga (harus diberikan meskipun perkiraan). Berikan warning bahwa perlu pengawasan dokter untuk penggunaan lebih lanjut (1 paragraf saja. jangan terlalu panjang)";
 
   useEffect(() => {
     if (imgSrc) {
@@ -65,32 +69,55 @@ const Result = () => {
 
       generateContent();
     }
-  }, [imgSrc]);
+  }, [imgSrc, API_KEY, defaultPrompt]);
+
+  const handleBack = () => {
+    navigate(-1);
+  };
 
   return (
-    <div className='min-h-dvh bg-white flex  items-center flex-col p-4'>
+    <div className='min-h-screen bg-white flex items-center flex-col '>
+      {" "}
+      <Navbar>
+        <div className='flex w-full items-center'>
+          <div className='w-fit flex items-center'>
+            <button onClick={handleBack}>
+              <IoMdArrowRoundBack size='1.4em' />
+            </button>
+          </div>
+          <div className='w-full'>
+            <p>Hasil Analisa</p>
+          </div>
+          <div className='w-fit  text-green-600 items-center'>
+            <button>
+              <IoMdArrowRoundBack size='1.4em' />
+            </button>
+          </div>
+        </div>
+      </Navbar>
       {imgSrc && (
         <>
-          <div>
-            <p className='text-xl font-medium text-center text-gray-800 mb-4'>
-              Hasil analisa
-            </p>
-            <img
-              src={imgSrc}
-              alt='Captured'
-              className='w-full max-w-[300px] mx-auto mb-4'
-            />
+          <div className='overflow-hidden w-full mb-8 h-96 object-center'>
+            <div className=''>
+              <img
+                src={imgSrc}
+                alt='Analyzed content'
+                className='w-full object-fill justify-center'
+              />
+            </div>
           </div>
-          <div
-            dangerouslySetInnerHTML={{ __html: output }}
-            className='text-gray-800 output'
-          />
-          <div>
-            <a href='/camera'>
-              <button className='bg-red-600 border py-2 px-4 rounded-md font-medium w-full mt-8'>
-                Coba obat lain
-              </button>
-            </a>
+          <div className='p-4  items-center flex flex-col w-full'>
+            <div
+              dangerouslySetInnerHTML={{ __html: output }}
+              className='text-gray-700 output border border-gray-300 px-8 py-6 rounded-xl w-full'
+            />
+            <div className='w-fit'>
+              <a href='/camera'>
+                <button className='bg-red-600 border py-2 px-4 rounded-md font-medium w-full mt-8'>
+                  Coba obat lain
+                </button>
+              </a>
+            </div>
           </div>
         </>
       )}
